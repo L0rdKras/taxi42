@@ -39,13 +39,14 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->only(['rut','firstName','lastName','address','type']);
+        $input = $request->only(['rut','firstName','lastName','address','city','type']);
 
         $rules = [
                 'rut'=>'required|unique:persons,rut',
                 'firstName'=>'required',
                 'lastName'=>'required',
                 'address'=>'required',
+                'city'=>'required',
                 'type'=>'required'
             ];
 
@@ -57,7 +58,9 @@ class PersonController extends Controller
 
             $person->save();
 
-            return response()->json(["respuesta"=>"Guardado"]);
+            $ruta = route('personas');
+
+            return response()->json(["respuesta"=>"Guardado","ruta"=>$ruta]);
         }
 
         $messages = $validation->errors();

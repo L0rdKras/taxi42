@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Movil;
+use App\Person;
+
 class MovilController extends Controller
 {
     /**
@@ -16,7 +19,7 @@ class MovilController extends Controller
      */
     public function index()
     {
-        //
+        return view('movils.index');
     }
 
     /**
@@ -26,7 +29,8 @@ class MovilController extends Controller
      */
     public function create()
     {
-        //
+        $partners = Person::where('type','=','Socio')->orderBy('lastName')->get();
+        return view('movils.register_form',compact('partners'));
     }
 
     /**
@@ -37,7 +41,31 @@ class MovilController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->only(['plate','mark','model','person_id']);
+
+        $rules = [
+                'plate'=>'required|unique:movils,plate',
+                'mark'=>'required',
+                'model'=>'required',
+                'person_id'=>'required'
+            ];
+
+        $validation = \Validator::make($input,$rules);
+
+        if($validation->passes())
+        {
+            $person = new Movil($input);
+
+            $person->save();
+
+            $ruta = route('moviles');
+
+            return response()->json(["respuesta"=>"Guardado","ruta"=>$ruta]);
+        }
+
+        $messages = $validation->errors();
+
+        return response()->json($messages);
     }
 
     /**

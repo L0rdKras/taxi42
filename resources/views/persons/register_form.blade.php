@@ -33,6 +33,12 @@
 					    {!! Form::text('address',null,array('id'=>'address','class'=>'col-md-2 campoIngreso')); !!}
 					    </h4>
 				    </div>
+				    <div class="row">
+	        			<h4>
+		        		{!! Form::label('city', 'Ciudad',array('class' => 'label label-default col-md-2')); !!}
+					    {!! Form::text('city',null,array('id'=>'city','class'=>'col-md-2 campoIngreso')); !!}
+					    </h4>
+				    </div>
 				    
 				    <div class="row">
 	        			<h4>
@@ -56,6 +62,6 @@
 
 @section('scripts')
 
-<script src="{{ asset('js/registerMedic.js')}}"></script>
+<script src="{{ asset('js/registerPerson.js')}}"></script>
 
 @endsection

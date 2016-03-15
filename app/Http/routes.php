@@ -24,3 +24,9 @@ Route::get('registro', function () {
 Route::get('registro/personas', ['as'=>'personas','uses'=>'PersonController@index']);
 Route::get('registro/crear/personas', ['as'=>'crear-persona','uses'=>'PersonController@create']);
 Route::post('registro/crear/personas', ['as'=>'save-person','uses'=>'PersonController@store']);
+
+//Moviles
+
+Route::get('registro/moviles', ['as'=>'moviles','uses'=>'MovilController@index']);
+Route::get('registro/crear/movil', ['as'=>'crear-movil','uses'=>'MovilController@create']);
+Route::post('registro/crear/movil', ['as'=>'save-movil','uses'=>'MovilController@store']);
