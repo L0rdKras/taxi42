@@ -7,10 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Movil;
-use App\Person;
+use App\Fondo;
 
-class MovilController extends Controller
+class FondoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +18,7 @@ class MovilController extends Controller
      */
     public function index()
     {
-        return view('movils.index');
+        return view('fondos.index');
     }
 
     /**
@@ -29,8 +28,7 @@ class MovilController extends Controller
      */
     public function create()
     {
-        $partners = Person::where('type','=','Socio')->orderBy('lastName')->get();
-        return view('movils.register_form',compact('partners'));
+        return view('fondos.registerForm');
     }
 
     /**
@@ -41,24 +39,21 @@ class MovilController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->only(['plate','mark','model','person_id']);
+        $input = $request->only(['name']);
 
         $rules = [
-                'plate'=>'required|unique:movils,plate',
-                'mark'=>'required',
-                'model'=>'required',
-                'person_id'=>'required'
+                'name'=>'required|unique:fondos,name'
             ];
 
         $validation = \Validator::make($input,$rules);
 
         if($validation->passes())
         {
-            $movil = new Movil($input);
+            $fondo = new Fondo($input);
 
-            $movil->save();
+            $fondo->save();
 
-            $ruta = route('moviles');
+            $ruta = route('fondos');
 
             return response()->json(["respuesta"=>"Guardado","ruta"=>$ruta]);
         }

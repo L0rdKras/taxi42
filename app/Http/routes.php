@@ -30,3 +30,9 @@ Route::post('registro/crear/personas', ['as'=>'save-person','uses'=>'PersonContr
 Route::get('registro/moviles', ['as'=>'moviles','uses'=>'MovilController@index']);
 Route::get('registro/crear/movil', ['as'=>'crear-movil','uses'=>'MovilController@create']);
 Route::post('registro/crear/movil', ['as'=>'save-movil','uses'=>'MovilController@store']);
+
+//Fondos
+
+Route::get('registro/fondos', ['as'=>'fondos','uses'=>'FondoController@index']);
+Route::get('registro/crear/fondo', ['as'=>'crear-fondo','uses'=>'FondoController@create']);
+Route::post('registro/crear/fondo', ['as'=>'save-fondo','uses'=>'FondoController@store']);
