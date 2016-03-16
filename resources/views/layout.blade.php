@@ -33,7 +33,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="/">Inicio</a></li>
-            <li><a href="">Registro</a></li>
+            <li><a href="{{route('registro')}}">Registro</a></li>
             <?php
             if (Auth::guest()){
               //

@@ -10,20 +10,18 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('registro', function () {
-    return view('home.registro');
-});
+Route::get('/', ['as'=>'index','uses'=>'HomeController@index']);
+Route::get('registro', ['as'=>'registro','uses'=>'HomeController@register']);
 
 //Personas
 
 Route::get('registro/personas', ['as'=>'personas','uses'=>'PersonController@index']);
 Route::get('registro/crear/personas', ['as'=>'crear-persona','uses'=>'PersonController@create']);
 Route::post('registro/crear/personas', ['as'=>'save-person','uses'=>'PersonController@store']);
+Route::get('registro/listado/personas', ['as'=>'lista-personas','uses'=>'PersonController@listOfPersons']);
+Route::get('registro/editar/persona/{id}', ['as'=>'editar-persona','uses'=>'PersonController@edit']);
+Route::patch('registro/editar/persona/{id}', ['as'=>'update-person','uses'=>'PersonController@update']);
+Route::get('registro/asignar/cuentas/persona/{id}', ['as'=>'asignar-cuentas-persona','uses'=>'PersonController@addAccounts']);
 
 //Moviles
 

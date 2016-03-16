@@ -87,7 +87,9 @@ class PersonController extends Controller
      */
     public function edit($id)
     {
-        //
+        $persona = Person::find($id);
+
+        return view('persons.edit',compact('persona'));
     }
 
     /**
@@ -99,7 +101,39 @@ class PersonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $person = Person::find($id);
+
+        $input = $request->only(['rut','firstName','lastName','address','city','type']);
+
+        $rules = [
+                'rut'=>'required',
+                'firstName'=>'required',
+                'lastName'=>'required',
+                'address'=>'required',
+                'city'=>'required',
+                'type'=>'required'
+            ];
+
+        $validation = \Validator::make($input,$rules);
+
+        if($validation->passes())
+        {
+            //$person = new Person($input);
+            $person->firstName = $input['firstName'];
+            $person->lastName = $input['lastName'];
+            $person->address = $input['address'];
+            $person->city = $input['city'];
+
+            $person->save();
+
+            $ruta = route('personas');
+
+            return response()->json(["respuesta"=>"Actualizado","ruta"=>$ruta]);
+        }
+
+        $messages = $validation->errors();
+
+        return response()->json($messages);
     }
 
     /**
@@ -111,5 +145,11 @@ class PersonController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function listOfPersons(){
+        $persons = Person::orderBy('lastName')->paginate(10);
+
+        return view('persons.list',compact('persons'));
     }
 }
