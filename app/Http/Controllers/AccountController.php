@@ -41,11 +41,15 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->only(['name','amount','fondo_id']);
+        $input = $request->only(['name','amount','type','renovate','init_date','finish_date','fondo_id']);
 
         $rules = [
                 'name'=>'required',
                 'amount'=>'required|numeric',
+                'type'=>'required',
+                'renovate'=>'required|numeric',
+                'init_date'=>'required|date',
+                'finish_date'=>'required|date',
                 'fondo_id'=>'required'
             ];
 
@@ -86,7 +90,9 @@ class AccountController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cuenta = Account::find($id);
+
+        return view('account.edit',compact('cuenta'));
     }
 
     /**
@@ -98,7 +104,39 @@ class AccountController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $account = Account::find($id);
+
+        $input = $request->only(['name','amount','type','renovate','init_date','finish_date','fondo_id']);
+
+        $rules = [
+                'name'=>'required',
+                'amount'=>'required|numeric',
+                'type'=>'required',
+                'renovate'=>'required|numeric',
+                'init_date'=>'required|date',
+                'finish_date'=>'required|date',
+                'fondo_id'=>'required'
+            ];
+
+        $validation = \Validator::make($input,$rules);
+
+        if($validation->passes())
+        {
+            //$account = new Account($input);
+            $account->amount = $input['amount'];
+            $account->init_date = $input['init_date'];
+            $account->finish_date = $input['finish_date'];
+
+            $account->save();
+
+            $ruta = route('cuentas');
+
+            return response()->json(["respuesta"=>"Actualizado","ruta"=>$ruta]);
+        }
+
+        $messages = $validation->errors();
+
+        return response()->json($messages);
     }
 
     /**

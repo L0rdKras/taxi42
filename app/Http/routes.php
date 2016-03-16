@@ -43,3 +43,5 @@ Route::get('registro/cuenta', ['as'=>'cuentas','uses'=>'AccountController@index'
 Route::get('registro/crear/cuenta', ['as'=>'crear-cuenta','uses'=>'AccountController@create']);
 Route::post('registro/crear/cuenta', ['as'=>'save-cuenta','uses'=>'AccountController@store']);
 Route::get('registro/listado/cuentas', ['as'=>'listado-cuentas','uses'=>'AccountController@listOfAccounts']);
+Route::get('registro/editar/cuenta/{id}', ['as'=>'editar-cuenta','uses'=>'AccountController@edit']);
+Route::patch('registro/editar/cuenta/{id}', ['as'=>'edita-cuenta','uses'=>'AccountController@update']);

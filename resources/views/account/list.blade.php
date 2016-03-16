@@ -26,7 +26,7 @@
 		                <td>{{$account->Fondo->name}}</td>
 		                <td>
 		                	<a class="btn btn-info" role="button" href="#">Ver</a>
-		                	<a class="btn btn-primary" role="button" href="#">Editar</a>
+		                	<a class="btn btn-primary btnEdicionCuenta" role="button" href="{{route('editar-cuenta', ['id' => $account->id])}}">Editar</a>
 		                </td>
 		              </tr>
 		              @endforeach
@@ -37,4 +37,10 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+
+<script src="{{ asset('js/listOfAccount.js')}}"></script>
+
 @endsection
