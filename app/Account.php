@@ -9,4 +9,9 @@ class Account extends Model
 	protected $table = 'accounts';
 
 	protected $fillable = ['name','amount','fondo_id'];
+
+	public function Fondo()
+	{
+		return $this->belongsTo('App\Fondo');
+	}
 }

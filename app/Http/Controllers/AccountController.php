@@ -111,4 +111,9 @@ class AccountController extends Controller
     {
         //
     }
+    public function listOfAccounts(){
+        $accounts = Account::orderBy('name')->paginate(10);
+
+        return view('account.list',compact('accounts'));
+    }
 }

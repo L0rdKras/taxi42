@@ -7,6 +7,7 @@
         <div class="panel panel-primary col-md-6">
             <div class="list-group">
             	<a href="{{route('crear-cuenta')}}" class="list-group-item">Registrar Cuenta</a>
+            	<a href="{{route('listado-cuentas')}}" class="list-group-item">Listado Cuentas</a>
             </div>
         </div>
     </div>
