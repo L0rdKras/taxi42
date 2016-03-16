@@ -9,6 +9,7 @@
             	<a href="{{route('personas')}}" class="list-group-item">Registrar Personas</a>
             	<a href="{{route('moviles')}}" class="list-group-item">Registrar Moviles</a>
             	<a href="{{route('fondos')}}" class="list-group-item">Registrar Fondos</a>
+            	<a href="{{route('cuentas')}}" class="list-group-item">Registrar Cuentas</a>
             </div>
         </div>
     </div>

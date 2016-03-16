@@ -36,3 +36,9 @@ Route::post('registro/crear/movil', ['as'=>'save-movil','uses'=>'MovilController
 Route::get('registro/fondos', ['as'=>'fondos','uses'=>'FondoController@index']);
 Route::get('registro/crear/fondo', ['as'=>'crear-fondo','uses'=>'FondoController@create']);
 Route::post('registro/crear/fondo', ['as'=>'save-fondo','uses'=>'FondoController@store']);
+
+//Cuentas
+
+Route::get('registro/cuenta', ['as'=>'cuentas','uses'=>'AccountController@index']);
+Route::get('registro/crear/cuenta', ['as'=>'crear-cuenta','uses'=>'AccountController@create']);
+Route::post('registro/crear/cuenta', ['as'=>'save-cuenta','uses'=>'AccountController@store']);
