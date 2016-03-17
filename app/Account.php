@@ -14,4 +14,9 @@ class Account extends Model
 	{
 		return $this->belongsTo('App\Fondo');
 	}
+
+	public function persons()
+    {
+        return $this->belongsToMany('App\Person');
+    }
 }

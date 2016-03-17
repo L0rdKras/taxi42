@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Person;
+use App\Account;
 
 class PersonController extends Controller
 {
@@ -151,5 +152,13 @@ class PersonController extends Controller
         $persons = Person::orderBy('lastName')->paginate(10);
 
         return view('persons.list',compact('persons'));
+    }
+
+    public function addAccounts($id){
+        $person = Person::find($id);
+
+        $accounts = Account::where('type','=','No Exigible')->orderBy('name')->get();
+
+        return view('account.addAccount',compact('person','accounts'));
     }
 }
