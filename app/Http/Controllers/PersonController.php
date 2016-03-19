@@ -159,6 +159,28 @@ class PersonController extends Controller
 
         $accounts = Account::where('type','=','No Exigible')->orderBy('name')->get();
 
-        return view('account.addAccount',compact('person','accounts'));
+        return view('persons.addAccount',compact('person','accounts'));
+    }
+
+    public function saveAccount(Request $request,$id){
+        //dd($id);
+        $input = $request->only(['account_id']);
+
+        $data = Person::find($id)->accounts()->where('account_id','=',$input['account_id'])->count();
+
+        if($data == 0){            
+            $account = Person::find($id)->accounts()->attach($request['account_id']);
+
+            return response()->json(["respuesta"=>"Guardado"]);
+        }else{
+            //ya esta agregado
+            return response()->json(["respuesta"=>"Error","mensaje"=>"Cuenta ya asignada a esta persona"]);
+        }
+    }
+
+    public function testData($id,$id2){
+        $data = Person::find($id)->accounts()->where('account_id','=',$id2)->count();
+
+        dd($data);
     }
 }

@@ -22,6 +22,9 @@ Route::get('registro/listado/personas', ['as'=>'lista-personas','uses'=>'PersonC
 Route::get('registro/editar/persona/{id}', ['as'=>'editar-persona','uses'=>'PersonController@edit']);
 Route::patch('registro/editar/persona/{id}', ['as'=>'update-person','uses'=>'PersonController@update']);
 Route::get('registro/asignar/cuentas/persona/{id}', ['as'=>'asignar-cuentas-persona','uses'=>'PersonController@addAccounts']);
+Route::post('add/account/person/{id}', ['as'=>'add-account-person','uses'=>'PersonController@saveAccount']);
+Route::post('delete/account/person/{id}', ['as'=>'delete-account-person','uses'=>'PersonController@deleteAccount']);
+//Route::get('add/account/person/test/{id}/{id2}', ['as'=>'add-account-person-test','uses'=>'PersonController@testData']);
 
 //Moviles
 
