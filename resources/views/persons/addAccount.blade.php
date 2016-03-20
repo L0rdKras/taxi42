@@ -68,6 +68,10 @@
 {!! Form::open(array('id'=>'formAdd','route' => ['add-account-person',$person->id],'method'=>'POST')) !!}
 {!! Form::hidden('account_id', null, array('id'=>'account_id') ); !!}
 {!! Form::close() !!}
+
+{!! Form::open(array('id'=>'formDelete','route' => ['delete-account-person',$person->id],'method'=>'POST')) !!}
+{!! Form::hidden('delete_id', null, array('id'=>'delete_id') ); !!}
+{!! Form::close() !!}
 <template id="filaDinamica">
 	<tr class="cuentasAgregadas" data-id=':ID'>
 		<th>:NOMBRE</th>

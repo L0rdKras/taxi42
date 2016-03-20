@@ -41,6 +41,8 @@ var borrarCuentaDelListado = function(){
 
 		var accountId = $(abuelo).data("id");
 
+		//alert(accountId);
+
 		deleteOfList(accountId,abuelo);
 
 	});
@@ -48,4 +50,21 @@ var borrarCuentaDelListado = function(){
 
 var deleteOfList = function(id,row){
 	//$.post(){}
+	$("#delete_id").val(id);
+
+	var form = $("#formDelete");
+	var url = form.attr('action');
+
+	var data = form.serialize();
+	//form.submit();
+
+	$.post(url,data,function(response){
+		//console.log(response);
+		if(response.respuesta === "Borrada"){
+			//quitar de la tabla
+			$(row).fadeOut();
+		}else{
+			alert(response.mensaje);
+		}
+	},'json');
 };

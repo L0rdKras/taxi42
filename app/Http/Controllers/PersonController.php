@@ -183,4 +183,10 @@ class PersonController extends Controller
 
         dd($data);
     }
+
+    public function deleteAccount(Request $request, $id){
+        $input = $request->only(['delete_id']);
+        $account = Person::find($id)->accounts()->detach($request['delete_id']);
+        return response()->json(["respuesta"=>"Borrada"]);
+    }
 }
