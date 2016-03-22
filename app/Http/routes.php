@@ -12,6 +12,7 @@
 */
 Route::get('/', ['as'=>'index','uses'=>'HomeController@index']);
 Route::get('registro', ['as'=>'registro','uses'=>'HomeController@register']);
+Route::get('ingresos', ['as'=>'ingresos','uses'=>'HomeController@income']);
 
 //Personas
 
@@ -24,13 +25,14 @@ Route::patch('registro/editar/persona/{id}', ['as'=>'update-person','uses'=>'Per
 Route::get('registro/asignar/cuentas/persona/{id}', ['as'=>'asignar-cuentas-persona','uses'=>'PersonController@addAccounts']);
 Route::post('add/account/person/{id}', ['as'=>'add-account-person','uses'=>'PersonController@saveAccount']);
 Route::post('delete/account/person/{id}', ['as'=>'delete-account-person','uses'=>'PersonController@deleteAccount']);
-//Route::get('add/account/person/test/{id}/{id2}', ['as'=>'add-account-person-test','uses'=>'PersonController@testData']);
+Route::get('lista/cuentas/asociadas/socio/{id}', ['as'=>'cuentas-asociadas-socio','uses'=>'PersonController@listOfAccounts']);
 
 //Moviles
 
 Route::get('registro/moviles', ['as'=>'moviles','uses'=>'MovilController@index']);
 Route::get('registro/crear/movil', ['as'=>'crear-movil','uses'=>'MovilController@create']);
 Route::post('registro/crear/movil', ['as'=>'save-movil','uses'=>'MovilController@store']);
+Route::get('registro/lista/moviles', ['as'=>'lista-moviles','uses'=>'MovilController@listOfMovils']);
 
 //Fondos
 
@@ -46,3 +48,7 @@ Route::post('registro/crear/cuenta', ['as'=>'save-cuenta','uses'=>'AccountContro
 Route::get('registro/listado/cuentas', ['as'=>'listado-cuentas','uses'=>'AccountController@listOfAccounts']);
 Route::get('registro/editar/cuenta/{id}', ['as'=>'editar-cuenta','uses'=>'AccountController@edit']);
 Route::patch('registro/editar/cuenta/{id}', ['as'=>'edita-cuenta','uses'=>'AccountController@update']);
+
+//Ingresos
+//vales
+Route::get('ingresos/vales',['as'=>'vales','uses'=>'VoucherController@create']);

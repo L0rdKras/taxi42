@@ -34,6 +34,7 @@
           <ul class="nav navbar-nav">
             <li><a href="/">Inicio</a></li>
             <li><a href="{{route('registro')}}">Registro</a></li>
+            <li><a href="{{route('ingresos')}}">Ingresos</a></li>
             <?php
             if (Auth::guest()){
               //

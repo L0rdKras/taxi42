@@ -189,4 +189,12 @@ class PersonController extends Controller
         $account = Person::find($id)->accounts()->detach($request['delete_id']);
         return response()->json(["respuesta"=>"Borrada"]);
     }
+
+    public function listOfAccounts($id){
+        $data = Person::find($id)->accounts;
+
+        $suma = Person::find($id)->accounts()->sum('amount');
+
+        return response()->json(["arreglo"=>$data,"suma"=>$suma]);
+    }
 }

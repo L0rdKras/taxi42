@@ -9,4 +9,9 @@ class Movil extends Model
 	protected $table = 'movils';
 
 	protected $fillable = ['plate','mark','model','person_id'];
+
+	public function Person()
+	{
+		return $this->belongsTo('App\Person');
+	}
 }

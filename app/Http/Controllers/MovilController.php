@@ -112,4 +112,10 @@ class MovilController extends Controller
     {
         //
     }
+
+    public function listOfMovils(){
+        $movils = Movil::orderBy('plate')->paginate(10);
+
+        return view('movils.list',compact('movils'));
+    }
 }

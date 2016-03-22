@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class HomeController extends Controller
+use App\Person;
+use App\Movil;
+
+class VoucherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +19,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
-    }
-
-    public function register(){
-        return view('home.registro');
-    }
-    public function income(){
-        return view('home.income');
+        //
     }
 
     /**
@@ -33,7 +29,11 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+        $moviles = Movil::orderBy('person_id')->get();
+
+        $persons = Person::orderBy('lastName')->get();
+
+        return view('voucher.registerVoucher',compact('persons','moviles'));
     }
 
     /**
