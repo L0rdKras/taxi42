@@ -14,6 +14,15 @@ Route::get('/', ['as'=>'index','uses'=>'HomeController@index']);
 Route::get('registro', ['as'=>'registro','uses'=>'HomeController@register']);
 Route::get('ingresos', ['as'=>'ingresos','uses'=>'HomeController@income']);
 
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
+
 //Personas
 
 Route::get('registro/personas', ['as'=>'personas','uses'=>'PersonController@index']);
