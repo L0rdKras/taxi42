@@ -7,6 +7,7 @@
         <div class="panel panel-primary col-md-6">
             <div class="list-group">
             	<a href="{{route('vales')}}" class="list-group-item">Registrar Vale</a>
+            	<a href="{{route('ahorro-voluntario')}}" class="list-group-item">Ahorro Voluntario</a>
             </div>
         </div>
     </div>

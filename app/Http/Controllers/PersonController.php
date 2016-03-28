@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\Person;
 use App\Account;
+use App\SavingMovement;
 
 class PersonController extends Controller
 {
@@ -198,5 +199,10 @@ class PersonController extends Controller
         $suma = Person::find($id)->accounts()->sum('amount');
 
         return response()->json(["arreglo"=>$data,"suma"=>$suma]);
+    }
+    public function getCartola($id){
+        $movements = Person::find($id)->savingMovements;
+
+        return response()->json(compact('movements'));
     }
 }

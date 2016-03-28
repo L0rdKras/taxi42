@@ -35,6 +35,7 @@ Route::get('registro/asignar/cuentas/persona/{id}', ['as'=>'asignar-cuentas-pers
 Route::post('add/account/person/{id}', ['as'=>'add-account-person','uses'=>'PersonController@saveAccount']);
 Route::post('delete/account/person/{id}', ['as'=>'delete-account-person','uses'=>'PersonController@deleteAccount']);
 Route::get('lista/cuentas/asociadas/socio/{id}', ['as'=>'cuentas-asociadas-socio','uses'=>'PersonController@listOfAccounts']);
+Route::get('cartola/ahorro/socio/{id}', ['as'=>'get-cartola','uses'=>'PersonController@getCartola']);
 
 //Moviles
 
@@ -61,3 +62,7 @@ Route::patch('registro/editar/cuenta/{id}', ['as'=>'edita-cuenta','uses'=>'Accou
 //Ingresos
 //vales
 Route::get('ingresos/vales',['as'=>'vales','uses'=>'VoucherController@create']);
+
+//ahorro
+Route::get('ingresos/ahorro/voluntario',['as'=>'ahorro-voluntario','uses'=>'SavingController@create']);
+Route::post('ingresos/ahorro/voluntario',['as'=>'save-saving','uses'=>'SavingController@store']);

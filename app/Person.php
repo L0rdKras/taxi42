@@ -14,4 +14,9 @@ class Person extends Model
     {
         return $this->belongsToMany('App\Account');
     }
+
+    public function savingMovements()
+    {
+        return $this->hasMany('App\SavingMovement');
+    }
 }
