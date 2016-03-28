@@ -35,6 +35,7 @@
             <li><a href="/">Inicio</a></li>
             <li><a href="{{route('registro')}}">Registro</a></li>
             <li><a href="{{route('ingresos')}}">Ingresos</a></li>
+            <li><a href="">Egresos</a></li>
             <?php
             if (Auth::guest()){
               //
