@@ -10,6 +10,7 @@
             	<a href="{{route('moviles')}}" class="list-group-item">Registrar Moviles</a>
             	<a href="{{route('fondos')}}" class="list-group-item">Registrar Fondos</a>
             	<a href="{{route('cuentas')}}" class="list-group-item">Registrar Cuentas</a>
+                <a href="{{route('usuarios')}}" class="list-group-item">Registrar Usuarios</a>
             </div>
         </div>
     </div>

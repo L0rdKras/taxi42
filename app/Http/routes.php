@@ -10,7 +10,10 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', ['as'=>'index','uses'=>'HomeController@index']);
+Route::get('/', ['as'=>'index','uses'=>'WelcomeController@index']);
+
+//Route::get('/prueba');
+Route::get('home', ['as'=>'home','uses'=>'HomeController@home']);
 Route::get('registro', ['as'=>'registro','uses'=>'HomeController@register']);
 Route::get('ingresos', ['as'=>'ingresos','uses'=>'HomeController@income']);
 
@@ -59,6 +62,12 @@ Route::get('registro/listado/cuentas', ['as'=>'listado-cuentas','uses'=>'Account
 Route::get('registro/editar/cuenta/{id}', ['as'=>'editar-cuenta','uses'=>'AccountController@edit']);
 Route::patch('registro/editar/cuenta/{id}', ['as'=>'edita-cuenta','uses'=>'AccountController@update']);
 
+//Usuarios
+Route::get('registro/usuarios', ['as'=>'usuarios','uses'=>'UserController@index']);
+Route::get('registro/crear/usuario', ['as'=>'crear-usuario','uses'=>'UserController@create']);
+Route::post('registro/crear/usuario', ['as'=>'save-user','uses'=>'UserController@store']);
+Route::get('registro/lista/usuarios', ['as'=>'lista-usuarios','uses'=>'UserController@listOfUsers']);
+
 //Ingresos
 //vales
 Route::get('ingresos/vales',['as'=>'vales','uses'=>'VoucherController@create']);
@@ -66,3 +75,7 @@ Route::get('ingresos/vales',['as'=>'vales','uses'=>'VoucherController@create']);
 //ahorro
 Route::get('ingresos/ahorro/voluntario',['as'=>'ahorro-voluntario','uses'=>'SavingController@create']);
 Route::post('ingresos/ahorro/voluntario',['as'=>'save-saving','uses'=>'SavingController@store']);
+
+
+//tareas programas
+//agregar deudas diarias

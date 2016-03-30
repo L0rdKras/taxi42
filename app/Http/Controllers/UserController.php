@@ -7,22 +7,19 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class HomeController extends Controller
+use App\User;
+
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function home(){
-        return view('home.home');
-    }
-    
-    public function register(){
-        return view('home.registro');
-    }
-    public function income(){
-        return view('home.income');
+    public function index()
+    {
+        //
+        return view('users.index');
     }
 
     /**
@@ -32,7 +29,7 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.register_form');
     }
 
     /**
@@ -43,7 +40,33 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->only(['name','username','email']);
+
+        $rules = [
+                'username'=>'required|unique:users,username',
+                'email'=>'required|email|unique:users,email',
+                'name'=>'required'
+            ];
+
+        $validation = \Validator::make($input,$rules);
+
+        if($validation->passes())
+        {
+            $input['role'] = "New";
+            $input['password'] = bcrypt("1234coleto");
+
+            $user = new User($input);
+
+            $user->save();
+
+            //$ruta = route('personas');
+
+            return response()->json(["respuesta"=>"Guardado"]);
+        }
+
+        $messages = $validation->errors();
+
+        return response()->json($messages);
     }
 
     /**
@@ -89,5 +112,11 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function listOfUsers(){
+        $users = User::orderBy('name')->paginate(10);
+
+        return view('users.list',compact('users'));
     }
 }

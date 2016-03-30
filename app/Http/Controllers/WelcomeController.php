@@ -7,22 +7,16 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class HomeController extends Controller
+class WelcomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function home(){
-        return view('home.home');
-    }
-    
-    public function register(){
-        return view('home.registro');
-    }
-    public function income(){
-        return view('home.income');
+    public function index()
+    {
+        return view('welcome');
     }
 
     /**

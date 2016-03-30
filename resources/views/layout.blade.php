@@ -37,9 +37,7 @@
             <li><a href="{{route('ingresos')}}">Ingresos</a></li>
             <li><a href="">Egresos</a></li>
             <?php
-            if (Auth::guest()){
-              //
-            }else{
+            if (Auth::check()){
               ?><li><a href="">Logout</a></li><?php
             }
 

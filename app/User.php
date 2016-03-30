@@ -28,7 +28,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'username' ,'email', 'password'];
+    protected $fillable = ['name', 'username','role' ,'email', 'password'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -36,4 +36,13 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function hasRole($role){
+        if($user->has('role')){
+            if($user->role === $role){
+                return true;
+            }
+        }
+        return false;
+    }
 }
