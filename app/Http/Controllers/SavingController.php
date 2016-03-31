@@ -68,6 +68,13 @@ class SavingController extends Controller
         return response()->json($messages);
     }
 
+    public function create()
+    {
+        $partners = Person::where('type','=','Socio')->get();
+
+        return view('saving.egress_saving',compact('partners'));
+    }
+
     /**
      * Display the specified resource.
      *

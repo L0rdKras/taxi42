@@ -38,11 +38,11 @@ class User extends Model implements AuthenticatableContract,
     protected $hidden = ['password', 'remember_token'];
 
     public function hasRole($role){
-        if($user->has('role')){
-            if($user->role === $role){
+        //if($this->has('role')){
+            if($this->role === $role){
                 return true;
             }
-        }
+        //}
         return false;
     }
 }

@@ -14,8 +14,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function home(){
         return view('home.home');
+        //$user = $request->user();
+        //var_dump($user->hasRole('New'));
     }
     
     public function register(){
@@ -23,6 +26,9 @@ class HomeController extends Controller
     }
     public function income(){
         return view('home.income');
+    }
+    public function egress(){
+        return view('home.egress');
     }
 
     /**
