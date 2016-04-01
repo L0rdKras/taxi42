@@ -205,4 +205,5 @@ class PersonController extends Controller
 
         return response()->json(compact('movements'));
     }
+
 }

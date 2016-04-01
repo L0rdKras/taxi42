@@ -19,4 +19,19 @@ class Person extends Model
     {
         return $this->hasMany('App\SavingMovement');
     }
+
+    public function totalIncome()
+    {
+        return $this->savingMovements()->where('type','Ingreso')->sum('amount');
+    }
+
+    public function totalEgress()
+    {
+        return $this->savingMovements()->where('type','Egreso')->sum('amount');
+    }
+
+    public function totalsaving()
+    {
+        return $this->totalIncome() - $this->totalEgress();
+    }
 }

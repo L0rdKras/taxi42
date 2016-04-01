@@ -68,7 +68,41 @@ class SavingController extends Controller
         return response()->json($messages);
     }
 
-    public function create()
+    public function store_egress(Request $request)
+    {
+        $input = $request->only(['person_id','amount']);
+
+        $input['type'] = "Egreso";
+
+        $rules = [
+                'amount'=>'required',
+                'person_id'=>'required',
+                'type'=>'required'
+            ];
+
+        $validation = \Validator::make($input,$rules);
+
+        if($validation->passes())
+        {
+            $person = Person::find($input['person_id']);
+
+            if($person->totalSaving() >= $input['amount'])
+            {
+                $movement = new SavingMovement($input);
+
+                $movement->save();
+
+                return response()->json(["respuesta"=>"Guardado","id_persona"=>$input['person_id']]);
+            }
+            return response()->json(["respuesta"=>"Error","mensaje"=>"No tiene fondos suficiente para hacer un retiro por ese monto"]);
+        }
+
+        $messages = $validation->errors();
+
+        return response()->json($messages);
+    }
+
+    public function createEgress()
     {
         $partners = Person::where('type','=','Socio')->get();
 

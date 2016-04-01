@@ -9,7 +9,7 @@
   			<div class="panel-heading">Datos</div>
   			<div class="panel-body">
   				<input type="hidden" id="rutaCartola" value="{{route('get-cartola',':ID')}}">
-	        	{!! Form::open(array('id'=>'formSaving','route' => ['save-saving'],'method'=>'POST')) !!}
+	        	{!! Form::open(array('id'=>'formSaving','route' => ['egress-saving'],'method'=>'POST')) !!}
 				    <div class="row">
 	        			<h4>
 		        		{!! Form::label('person', 'Socio',array('class' => 'label label-default col-md-2')); !!}
