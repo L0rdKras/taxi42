@@ -16,6 +16,10 @@ Route::get('/', ['as'=>'index','uses'=>'WelcomeController@index']);
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 
+// Registration routes...
+	Route::get('auth/register', 'Auth\AuthController@getRegister');
+	Route::post('auth/register', 'Auth\AuthController@postRegister');
+
 Route::group(['middleware'=>'auth'],function(){
 	//
 	Route::get('home', ['as'=>'home','uses'=>'HomeController@home']);
@@ -26,9 +30,7 @@ Route::group(['middleware'=>'auth'],function(){
 	// Authentication routes...
 	Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
-	// Registration routes...
-	//Route::get('auth/register', 'Auth\AuthController@getRegister');
-	//Route::post('auth/register', 'Auth\AuthController@postRegister');
+	
 
 	//Personas
 
