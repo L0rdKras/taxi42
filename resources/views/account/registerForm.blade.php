@@ -12,27 +12,35 @@
 	        		<div class="row">
 	        			<h4>
 		        		{!! Form::label('name', 'Nombre',array('class' => 'label label-default col-md-2')); !!}
-					    {!! Form::text('name',null,array('id'=>'name','class'=>'col-md-2 campoIngreso')); !!}
-					    </h4>
-				    </div>
-	        	<div class="row">
-	        			<h4>
-		        		{!! Form::label('amount', 'Monto',array('class' => 'label label-default col-md-2')); !!}
-					      {!! Form::text('amount',null,array('id'=>'amount','class'=>'col-md-2 campoIngreso')); !!}
+					      {!! Form::text('name',null,array('id'=>'name','class'=>'col-md-2 campoIngreso')); !!}
 					    </h4>
 				    </div>
             <div class="row">
                 <h4>
                 {!! Form::label('type', 'Tipo',array('class' => 'label label-default col-md-2')); !!}
               
-                {!! Form::select('type', array(''=>'','Exigible'=>'Exigible','No Exigible'=>'No Exigible'), null, array('id'=>'type','class'=>'col-md-2 campoIngreso') ); !!}
+                {!! Form::select('type', array(''=>'','Ingreso'=>'Ingreso','Egreso'=>'Egreso'), null, array('id'=>'type','class'=>'col-md-2 campoIngreso') ); !!}
+              </h4>
+            </div>
+            <div class="row">
+                <h4>
+                {!! Form::label('exigible', 'Exigible',array('class' => 'label label-default col-md-2')); !!}
+              
+                {!! Form::select('exigible', array('NO'=>'NO','SI'=>'SI'), null, array('id'=>'exigible','class'=>'col-md-2 campoIngreso') ); !!}
+              </h4>
+            </div>
+          <div id="exigibleArea" style="visibility:hidden">
+            <div class="row">
+                <h4>
+                {!! Form::label('amount', 'Monto',array('class' => 'label label-default col-md-2')); !!}
+                {!! Form::text('amount',null,array('id'=>'amount','class'=>'col-md-2 campoIngreso')); !!}
               </h4>
             </div>
             <div class="row">
                 <h4>
                 {!! Form::label('renovate', 'Periodicidad Cobro',array('class' => 'label label-default col-md-2')); !!}
               
-                {!! Form::select('renovate', array(''=>'','1'=>'Diario','7'=>'Semanal','30'=>'Mensual','365'=>'Anual'), null, array('id'=>'renovate','class'=>'col-md-2 campoIngreso') ); !!}
+                {!! Form::select('renovate', array('0'=>'','1'=>'Diario','7'=>'Semanal','30'=>'Mensual'), null, array('id'=>'renovate','class'=>'col-md-2 campoIngreso') ); !!}
               </h4>
             </div>
             <div class="row">
@@ -50,6 +58,7 @@
                   <button type='button' onclick='displayCalendar(document.getElementById("finish_date"),document.getElementById("formato_fecha").value,this)'><span class="glyphicon glyphicon-search"></span></button>
                 </h4>
             </div>
+          </div>
 				    <div class="row">
 	        			<h4>
 		        		{!! Form::label('fondo', 'Fondo',array('class' => 'label label-default col-md-2')); !!}

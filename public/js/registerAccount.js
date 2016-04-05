@@ -6,6 +6,8 @@ $(document).ready(function() {
 
 	seleccionaFondo();
 
+	elijeCondicion();
+
 });
 
 var guardaTitular = function(){
@@ -87,5 +89,15 @@ var seleccionaFondo = function(){
 		$("#fondo").val(nombre);
 
 		$("#modal-search-fondo").modal('hide');
+	});
+};
+
+var elijeCondicion = function(){
+	$("#exigible").on('change',function(){
+		if($(this).val() == "SI"){
+			$("#exigibleArea").css("visibility","visible");
+		}else{
+			$("#exigibleArea").css("visibility","hidden");
+		}
 	});
 };

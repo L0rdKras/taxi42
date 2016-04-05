@@ -85,8 +85,9 @@ Route::group(['middleware'=>'auth'],function(){
 
 	//Egresos
 	//ahorro
-	Route::get('egresos/ahorro/voluntario',['as'=>'ahorro-voluntario','uses'=>'SavingController@createEgress']);
+	Route::get('egresos/ahorro/voluntario',['as'=>'ahorro-voluntario-egreso','uses'=>'SavingController@createEgress']);
 	Route::post('egresos/ahorro/voluntario',['as'=>'egress-saving','uses'=>'SavingController@store_egress']);
+	//prestamos
 
 	//tareas programas
 	//agregar deudas diarias

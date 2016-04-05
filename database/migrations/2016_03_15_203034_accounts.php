@@ -17,6 +17,7 @@ class Accounts extends Migration
             $table->string('name');
             $table->integer('amount');
             $table->string('type');
+            $table->integer('exigible')->unsigned();
             $table->integer('renovate')->unsigned();
             $table->date('init_date');
             $table->date('finish_date');
