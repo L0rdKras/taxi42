@@ -28,9 +28,7 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::get('egresos', ['as'=>'egresos','uses'=>'HomeController@egress']);
 
 	// Authentication routes...
-	Route::get('auth/logout', 'Auth\AuthController@getLogout');
-
-	
+	Route::get('auth/logout', ['as'=>'logOut','uses'=>'Auth\AuthController@getLogout']);
 
 	//Personas
 

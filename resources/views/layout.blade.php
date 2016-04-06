@@ -38,7 +38,7 @@
             <li><a href="{{route('egresos')}}">Egresos</a></li>
             <?php
             if (Auth::check()){
-              ?><li><a href="">Logout</a></li><?php
+              ?><li><a href="{{route('logOut')}}">Logout</a></li><?php
             }
 
             ?>
