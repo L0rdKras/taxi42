@@ -4,8 +4,10 @@
 <div class="container theme-showcase" style="padding-top:80px" role="main">
     <div class="page-hader">
         <div class="panel">
-@if(!empty($errors))
-    <?php var_dump($errors->default)?>
+@if($errors->has())
+    @foreach ($errors->all() as $error)
+      <div class="label label-danger">{{ $error }}</div>
+  @endforeach
 @endif
             <form method="POST" action="/auth/login">
                 {!! csrf_field() !!}
