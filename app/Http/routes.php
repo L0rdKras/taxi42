@@ -43,6 +43,7 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::post('delete/account/person/{id}', ['as'=>'delete-account-person','uses'=>'PersonController@deleteAccount']);
 	Route::get('lista/cuentas/asociadas/socio/{id}', ['as'=>'cuentas-asociadas-socio','uses'=>'PersonController@listOfAccounts']);
 	Route::get('cartola/ahorro/socio/{id}', ['as'=>'get-cartola','uses'=>'PersonController@getCartola']);
+	Route::get('cartola/prestamos/socio/{id}', ['as'=>'get-cartola-loans','uses'=>'PersonController@getLoans']);
 
 	//Moviles
 
@@ -88,6 +89,7 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::get('egresos/ahorro/voluntario',['as'=>'ahorro-voluntario-egreso','uses'=>'SavingController@createEgress']);
 	Route::post('egresos/ahorro/voluntario',['as'=>'egress-saving','uses'=>'SavingController@store_egress']);
 	//prestamos
+	Route::get('egresos/prestamo/socio',['as'=>'prestamo-socio','uses'=>'LoanController@create']);
 
 	//tareas programas
 	//agregar deudas diarias

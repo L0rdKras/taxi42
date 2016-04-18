@@ -8,7 +8,7 @@
             <div class="list-group">
             	
             	<a href="{{route('ahorro-voluntario-egreso')}}" class="list-group-item">Retiro Ahorro Voluntario</a>
-            	<a href="{{route('ahorro-voluntario')}}" class="list-group-item">Prestamo a Socios</a>
+            	<a href="{{route('prestamo-socio')}}" class="list-group-item">Prestamo a Socios</a>
             </div>
         </div>
     </div>

@@ -160,7 +160,7 @@ class PersonController extends Controller
     public function addAccounts($id){
         $person = Person::find($id);
 
-        $accounts = Account::where('type','=','No Exigible')->orderBy('name')->get();
+        $accounts = Account::where('exigible','=','0')->orderBy('name')->get();
 
         return view('persons.addAccount',compact('person','accounts'));
     }
@@ -204,6 +204,12 @@ class PersonController extends Controller
         $movements = Person::find($id)->savingMovements;
 
         return response()->json(compact('movements'));
+    }
+
+    public function getLoans($id){
+        $loans = Person::find($id)->Loans;
+
+        return response()->json(compact('loans'));
     }
 
 }

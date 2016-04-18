@@ -45,11 +45,11 @@ class AccountController extends Controller
 
         $rules = [
                 'name'=>'required',
-                'amount'=>'required|numeric',
+                //'amount'=>'required|numeric',
                 'type'=>'required',
                 'renovate'=>'required|numeric',
-                'init_date'=>'required|date',
-                'finish_date'=>'required|date',
+                /*'init_date'=>'required|date',
+                'finish_date'=>'required|date',*/
                 'fondo_id'=>'required'
             ];
 

@@ -34,4 +34,9 @@ class Person extends Model
     {
         return $this->totalIncome() - $this->totalEgress();
     }
+
+    public function Loans()
+    {
+        return $this->hasMany('App\Loan');
+    }
 }

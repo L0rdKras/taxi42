@@ -26,7 +26,7 @@
                 <h4>
                 {!! Form::label('exigible', 'Exigible',array('class' => 'label label-default col-md-2')); !!}
               
-                {!! Form::select('exigible', array('NO'=>'NO','SI'=>'SI'), null, array('id'=>'exigible','class'=>'col-md-2 campoIngreso') ); !!}
+                {!! Form::select('exigible', array('0'=>'NO','1'=>'SI'), null, array('id'=>'exigible','class'=>'col-md-2 campoIngreso') ); !!}
               </h4>
             </div>
           <div id="exigibleArea" style="visibility:hidden">
