@@ -83,6 +83,10 @@ Route::group(['middleware'=>'auth'],function(){
 	//ahorro
 	Route::get('ingresos/ahorro/voluntario',['as'=>'ahorro-voluntario','uses'=>'SavingController@create']);
 	Route::post('ingresos/ahorro/voluntario',['as'=>'save-saving','uses'=>'SavingController@store']);
+	//pago prestamos
+	Route::get('ingresos/pago/prestamo',['as'=>'pago-prestamo','uses'=>'LoanController@paying']);
+	Route::get('ingresos/realizar/pago/prestamo/{id}',['as'=>'confeccionar-pago','uses'=>'LoanController@showToPay']);
+	Route::post('ingresos/realizar/pago/prestamo/{id}',['as'=>'pay-loan','uses'=>'LoanController@payLoan']);
 
 	//Egresos
 	//ahorro

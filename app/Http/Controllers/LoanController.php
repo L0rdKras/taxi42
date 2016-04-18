@@ -123,4 +123,78 @@ class LoanController extends Controller
     {
         //
     }
+
+    public function paying(){
+        $partners = Person::where('type','Socio')->orderBy('lastName')->get();
+        return view("loan.pay",compact('partners'));
+    }
+
+    public function showToPay($id){
+        $loan = Loan::find($id);
+
+        if($loan->status === "Pendiente"){
+
+            $egreso = $loan->Movements->sum('egress');
+
+            $ingresos = $loan->Movements->sum('ingress');
+
+            return view("loan.showToPay",compact('loan','egreso','ingresos'));
+        }
+
+        return view('error',[
+                $mensaje = "Este prestamo ya fue cancelado"
+            ]);
+
+    }
+
+    public function payLoan(Request $request, $id){
+        $loan = Loan::find($id);
+
+        if($loan->status == "Pendiente")
+        {
+            $input = $request->only(['amount']);
+
+            $rules = [
+                'amount' => 'required|numeric|min:1'
+            ];
+
+            $validation = \Validator::make($input,$rules);
+
+            if($validation->passes())
+            {
+                $data = [
+                    "ingress"   =>  $input['amount'],
+                    "egress"    =>  0
+                ];
+
+                $abonos = $loan->Movements->sum('ingress');
+
+                $saldo = $loan->amount - $abonos;
+
+                if($saldo>=$input['amount']){
+                    //
+                    if($saldo == $input['amount']){
+                        $loan->status = "Cancelada";
+
+                        $loan->save();
+                    }
+                    $movement = new Movement($data);
+
+                    $movement->save();
+
+                    $loan->Movements()->attach($movement->id);
+
+                    return response()->json(["respuesta"=>"Guardado"]);
+                }
+
+                //se quiere abonar mas de lo que se debe
+
+            }
+
+            $messages = $validation->errors();
+
+            return response()->json($messages);
+        }
+        //ya esta cancelada
+    }
 }

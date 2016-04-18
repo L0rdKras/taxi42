@@ -14,4 +14,8 @@ class Loan extends Model
     {
         return $this->belongsToMany('App\Movement');
     }
+
+    public function Person(){
+    	return $this->belongsTo('App\Person');
+    }
 }

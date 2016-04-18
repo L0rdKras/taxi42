@@ -207,7 +207,19 @@ class PersonController extends Controller
     }
 
     public function getLoans($id){
-        $loans = Person::find($id)->Loans;
+        $result = Person::find($id)->Loans;
+
+        $loans = [];
+
+        foreach ($result as $loan) {
+            $abonos = $loan->Movements->sum('ingress');
+
+            $saldo = $loan->amount - $abonos;
+
+            $data = compact('loan','abonos','saldo');
+
+            $loans[] = $data;
+        }
 
         return response()->json(compact('loans'));
     }

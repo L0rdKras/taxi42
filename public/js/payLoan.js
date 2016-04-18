@@ -1,14 +1,16 @@
 $(document).ready(function() {
 	//guardarPaciente();
-	guardaTitular();
+	//guardaTitular();
 
 	buscarPartner();
 
 	seleccionaPartner();
 
+	seleccionaDeuda();
+
 });
 
-var guardaTitular = function(){
+/*var guardaTitular = function(){
 	$("#guardar").on('click',function(e){
 		e.preventDefault();
 
@@ -52,7 +54,7 @@ var guardaTitular = function(){
 			alert("Ocurrio un error al intentar guardar la informacion");
 		});
 	});
-};
+};*/
 
 var cleanAlerts = function(object){
 	$("#"+object+" .alert").remove();
@@ -99,7 +101,7 @@ var cargarCartola = function(id){
 	var fila = $("#filaPrestamos").html();
 	//console.log(ruta);
 	$.getJSON(ruta,function(response){
-		console.log(response);
+		//console.log(response);
 		var arreglo = response.loans;
 
 		for (var i = 0; i < arreglo.length; i++) {
@@ -107,14 +109,41 @@ var cargarCartola = function(id){
 
 			var filaAdd = fila.replace(":DATE",arreglo[i].loan.date);
 			filaAdd = filaAdd.replace(":DATELIMIT",arreglo[i].loan.limit_date);
-			filaAdd = filaAdd.replace(":STATUS",arreglo[i].loan.status);
+			filaAdd = filaAdd.replace(/:STATUS/g,arreglo[i].loan.status);
 			filaAdd = filaAdd.replace(":AMOUNT",arreglo[i].loan.amount);
 			filaAdd = filaAdd.replace(":PAYMENT",arreglo[i].abonos);
 			filaAdd = filaAdd.replace(":RESIDUE",arreglo[i].saldo);
+			filaAdd = filaAdd.replace(":ID",arreglo[i].loan.id);
 
 			//console.log(filaAdd);
 
 			$("#tablaCartola tbody").append(filaAdd);
 		}
 	});
+};
+
+var seleccionaDeuda = function(){
+	$("#tablaCartola tbody").on("click","tr th .selectDebt",function(event){
+		event.preventDefault();
+
+		padre = $(this).parent();
+
+		abuelo = $(padre).parent();
+
+		abrirPago(abuelo.data('id'),abuelo.data('status'));
+	});
+};
+
+var abrirPago = function(id,estado){
+	if(estado === "Pendiente"){
+		ruta = $("#rutaPagar").val();
+
+		ruta = ruta.replace(":ID",id);
+
+		console.log(ruta);
+
+		location.href=ruta;
+	}else{
+		alert("Este prestamo ya esta cancelado");
+	}
 };
