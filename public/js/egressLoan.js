@@ -12,7 +12,7 @@ var guardaTitular = function(){
 	$("#guardar").on('click',function(e){
 		e.preventDefault();
 
-		var form = $("#formSaving");
+		var form = $("#formLoan");
 		//var formRuta = $("#formSaveIncumbents");
 
 		var url = form.attr('action');
@@ -21,12 +21,12 @@ var guardaTitular = function(){
 
 		$.post(url,data,function(response){
 			//borrar los alert
-			cleanAlerts("formSaving");
+			cleanAlerts("formLoan");
 			if(response.respuesta!=undefined){
 				var modalWindow = $('#modalTemplate').html();
 				if(response.respuesta==="Guardado"){
 					//informar y recargar
-					modalWindow = modalWindow.replace(':MENSAJE','Retiro Registrado');
+					modalWindow = modalWindow.replace(':MENSAJE','Prestamo Registrado');
 					$(modalWindow).modal({
 					  keyboard: false,
 					  backdrop: 'static'
@@ -40,7 +40,7 @@ var guardaTitular = function(){
 					$(modalWindow).modal();
 				}
 			}else{
-				$("#formSaving .campoIngreso").each(function (index) 
+				$("#formLoan .campoIngreso").each(function (index) 
         		{
         			var id_name = this.id;
 
@@ -96,29 +96,19 @@ var cargarCartola = function(id){
 
 	ruta = ruta.replace(":ID", id);
 
-	var fila = $("#filaMovimientos").html();
+	var fila = $("#filaPrestamos").html();
 	//console.log(ruta);
 	$.getJSON(ruta,function(response){
-		var arreglo = response.movements;
-
-		var saldo = 0;
+		//console.log(response);
+		var arreglo = response.loans;
 
 		for (var i = 0; i < arreglo.length; i++) {
 			//console.log(arreglo[i]);
 
-			var filaAdd = fila.replace(":FECHA",arreglo[i].created_at);
-
-			if(arreglo[i].type==="Ingreso"){
-				saldo+=arreglo[i].amount;
-				filaAdd = filaAdd.replace(":INGRESO",arreglo[i].amount);
-				filaAdd = filaAdd.replace(":EGRESO","0");
-				filaAdd = filaAdd.replace(":SALDO",saldo);
-			}else{
-				saldo-=arreglo[i].amount;
-				filaAdd = filaAdd.replace(":EGRESO",arreglo[i].amount);
-				filaAdd = filaAdd.replace(":INGRESO","0");
-				filaAdd = filaAdd.replace(":SALDO",saldo);
-			}
+			var filaAdd = fila.replace(":DATE",arreglo[i].date);
+			filaAdd = filaAdd.replace(":DATELIMIT",arreglo[i].limit_date);
+			filaAdd = filaAdd.replace(":STATUS",arreglo[i].status);
+			filaAdd = filaAdd.replace(":AMOUNT",arreglo[i].amount);
 
 			//console.log(filaAdd);
 

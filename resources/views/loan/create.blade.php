@@ -9,7 +9,7 @@
         <div class="panel-heading">Datos</div>
         <div class="panel-body">
           <input type="hidden" id="rutaCartola" value="{{route('get-cartola-loans',':ID')}}">
-            {!! Form::open(array('id'=>'formLoan','route' => ['egress-saving'],'method'=>'POST')) !!}
+            {!! Form::open(array('id'=>'formLoan','route' => ['loan-save'],'method'=>'POST')) !!}
             <input type='hidden' name='formato_fecha' id="formato_fecha" value='yyyy/mm/dd'/>
             <div class="row">
               <h4>
@@ -74,6 +74,7 @@
 <template id="filaPrestamos">
 	<tr>
 		<th>:DATE</th>
+    <th>:DATELIMIT</th>
 		<th>:STATUS</th>
 		<th>:AMOUNT</th>
 		<th>:PAYMENT</th>

@@ -90,7 +90,7 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::post('egresos/ahorro/voluntario',['as'=>'egress-saving','uses'=>'SavingController@store_egress']);
 	//prestamos
 	Route::get('egresos/prestamo/socio',['as'=>'prestamo-socio','uses'=>'LoanController@create']);
-
+	Route::post('egresos/prestamo/socio',['as'=>'loan-save','uses'=>'LoanController@store']);
 	//tareas programas
 	//agregar deudas diarias
 });
