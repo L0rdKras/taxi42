@@ -41,12 +41,13 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->only(['name','amount','type','renovate','init_date','finish_date','fondo_id']);
+        $input = $request->only(['name','amount','type','exigible','renovate','init_date','finish_date','fondo_id']);
 
         $rules = [
                 'name'=>'required',
                 //'amount'=>'required|numeric',
                 'type'=>'required',
+                'exigible'=>'required',
                 'renovate'=>'required|numeric',
                 /*'init_date'=>'required|date',
                 'finish_date'=>'required|date',*/

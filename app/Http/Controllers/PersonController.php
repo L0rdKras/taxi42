@@ -224,4 +224,15 @@ class PersonController extends Controller
         return response()->json(compact('loans'));
     }
 
+    public function dataForPay($id)
+    {
+        $person = Person::find($id);
+
+        $moviles = $person->Movils;
+
+        $arreglo = compact('moviles','person');
+
+        return response()->json($arreglo);
+    }
+
 }

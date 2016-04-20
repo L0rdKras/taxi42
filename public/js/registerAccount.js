@@ -94,7 +94,7 @@ var seleccionaFondo = function(){
 
 var elijeCondicion = function(){
 	$("#exigible").on('change',function(){
-		if($(this).val() == "SI"){
+		if($(this).val() == "1"){
 			$("#exigibleArea").css("visibility","visible");
 		}else{
 			$("#exigibleArea").css("visibility","hidden");

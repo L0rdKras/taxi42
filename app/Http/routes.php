@@ -44,6 +44,7 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::get('lista/cuentas/asociadas/socio/{id}', ['as'=>'cuentas-asociadas-socio','uses'=>'PersonController@listOfAccounts']);
 	Route::get('cartola/ahorro/socio/{id}', ['as'=>'get-cartola','uses'=>'PersonController@getCartola']);
 	Route::get('cartola/prestamos/socio/{id}', ['as'=>'get-cartola-loans','uses'=>'PersonController@getLoans']);
+	Route::get('data/person/for/pays/{id}',['as'=>'data-person','uses'=>'PersonController@dataForPay']);
 
 	//Moviles
 
@@ -51,6 +52,7 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::get('registro/crear/movil', ['as'=>'crear-movil','uses'=>'MovilController@create']);
 	Route::post('registro/crear/movil', ['as'=>'save-movil','uses'=>'MovilController@store']);
 	Route::get('registro/lista/moviles', ['as'=>'lista-moviles','uses'=>'MovilController@listOfMovils']);
+	Route::get('data/pendings/movil/{id}', ['as'=>'pendings-movil','uses'=>'MovilController@debtsMovil']);
 
 	//Fondos
 
@@ -87,6 +89,8 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::get('ingresos/pago/prestamo',['as'=>'pago-prestamo','uses'=>'LoanController@paying']);
 	Route::get('ingresos/realizar/pago/prestamo/{id}',['as'=>'confeccionar-pago','uses'=>'LoanController@showToPay']);
 	Route::post('ingresos/realizar/pago/prestamo/{id}',['as'=>'pay-loan','uses'=>'LoanController@payLoan']);
+	//Pago cuentas
+	Route::get('ingresos/pago/cuentas',['as'=>'pago-cuentas','uses'=>'PayController@create']);
 
 	//Egresos
 	//ahorro

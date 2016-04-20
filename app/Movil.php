@@ -14,4 +14,9 @@ class Movil extends Model
 	{
 		return $this->belongsTo('App\Person');
 	}
+
+	public function Pendings()
+	{
+		return $this->hasMany('App\Pending');
+	}
 }

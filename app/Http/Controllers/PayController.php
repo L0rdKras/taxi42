@@ -7,13 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use DB;
-
-use App\Movil;
 use App\Person;
-use App\Pending;
 
-class MovilController extends Controller
+class PayController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +18,7 @@ class MovilController extends Controller
      */
     public function index()
     {
-        return view('movils.index');
+        //
     }
 
     /**
@@ -32,8 +28,9 @@ class MovilController extends Controller
      */
     public function create()
     {
-        $partners = Person::where('type','=','Socio')->orderBy('lastName')->get();
-        return view('movils.register_form',compact('partners'));
+        $partners = Person::where('type','Socio')->orderBy('lastName')->get();
+
+        return view('pay_accounts.pay',compact('partners'));
     }
 
     /**
@@ -44,31 +41,7 @@ class MovilController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->only(['plate','mark','model','person_id']);
-
-        $rules = [
-                'plate'=>'required|unique:movils,plate',
-                'mark'=>'required',
-                'model'=>'required',
-                'person_id'=>'required'
-            ];
-
-        $validation = \Validator::make($input,$rules);
-
-        if($validation->passes())
-        {
-            $movil = new Movil($input);
-
-            $movil->save();
-
-            $ruta = route('moviles');
-
-            return response()->json(["respuesta"=>"Guardado","ruta"=>$ruta]);
-        }
-
-        $messages = $validation->errors();
-
-        return response()->json($messages);
+        //
     }
 
     /**
@@ -114,24 +87,5 @@ class MovilController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function listOfMovils(){
-        $movils = Movil::orderBy('plate')->paginate(10);
-
-        return view('movils.list',compact('movils'));
-    }
-
-    public function debtsMovil($id){
-        $fechas = DB::table('pendings')
-        //->select('date')
-        ->select(DB::raw("sum(amount) as total,date"))
-        ->distinct()
-        ->where('movil_id',$id)
-        ->where('status','Pendiente')
-        ->groupBy('date')
-        ->get();
-
-        return response()->json($fechas);
     }
 }

@@ -8,6 +8,8 @@
             <div class="list-group">            	
             	<a href="{{route('ahorro-voluntario')}}" class="list-group-item">Ahorro Voluntario</a>
             	<a href="{{route('pago-prestamo')}}" class="list-group-item">Pago Prestamos</a>
+            	<a href="{{route('pago-cuentas')}}" class="list-group-item">Pago Cuentas</a>
+            	<a href="" class="list-group-item">Pago Deudas</a>
             </div>
         </div>
     </div>

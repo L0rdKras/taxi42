@@ -39,4 +39,9 @@ class Person extends Model
     {
         return $this->hasMany('App\Loan');
     }
+
+    public function Movils()
+    {
+        return $this->hasMany('App\Movil');
+    }
 }

@@ -19,7 +19,7 @@
                 <h4>
                 {!! Form::label('type', 'Tipo',array('class' => 'label label-default col-md-2')); !!}
               
-                {!! Form::select('type', array(''=>'','Ingreso'=>'Ingreso','Egreso'=>'Egreso'), null, array('id'=>'type','class'=>'col-md-2 campoIngreso') ); !!}
+                {!! Form::select('type', array(''=>'','Ingreso'=>'Ingreso','Egreso'=>'Egreso','Ingreso(Auto)'=>'Ingreso(Auto)'), null, array('id'=>'type','class'=>'col-md-2 campoIngreso') ); !!}
               </h4>
             </div>
             <div class="row">
