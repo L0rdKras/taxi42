@@ -36,6 +36,7 @@
             <li><a href="{{route('registro')}}">Registro</a></li>
             <li><a href="{{route('ingresos')}}">Ingresos</a></li>
             <li><a href="{{route('egresos')}}">Egresos</a></li>
+            <li><a href="">Disciplina</a></li>
             <?php
             if (Auth::check()){
               ?><li><a href="{{route('logOut')}}">Logout</a></li><?php
