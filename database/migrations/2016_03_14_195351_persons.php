@@ -19,6 +19,7 @@ class Persons extends Migration
             $table->string('lastName');
             $table->string('address');
             $table->string('city');
+            $table->string('phone');
             $table->string('type');
             $table->timestamps();
         });

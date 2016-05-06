@@ -39,6 +39,12 @@
 					    {!! Form::text('city',null,array('id'=>'city','class'=>'col-md-2 campoIngreso')); !!}
 					    </h4>
 				    </div>
+				    <div class="row">
+	        			<h4>
+		        		{!! Form::label('phone', 'Telefono',array('class' => 'label label-default col-md-2')); !!}
+					    {!! Form::text('phone',null,array('id'=>'phone','class'=>'col-md-2 campoIngreso')); !!}
+					    </h4>
+				    </div>
 				    
 				    <div class="row">
 	        			<h4>

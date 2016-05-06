@@ -101,4 +101,6 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::post('egresos/prestamo/socio',['as'=>'loan-save','uses'=>'LoanController@store']);
 	//tareas programas
 	//agregar deudas diarias
+
+	Route::get('import/old/data',['as'=>'import-old-data-persons','uses'=>'PersonController@importOldData']);
 });

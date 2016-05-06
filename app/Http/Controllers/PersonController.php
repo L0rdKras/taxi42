@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use DB;
+
 use App\Person;
 use App\Account;
 use App\SavingMovement;
@@ -43,7 +45,7 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->only(['rut','firstName','lastName','address','city','type']);
+        $input = $request->only(['rut','firstName','lastName','address','city','phone','type']);
 
         $rules = [
                 'rut'=>'required|unique:persons,rut',
@@ -51,6 +53,7 @@ class PersonController extends Controller
                 'lastName'=>'required',
                 'address'=>'required',
                 'city'=>'required',
+                'phone'=>'required',
                 'type'=>'required'
             ];
 
@@ -107,7 +110,7 @@ class PersonController extends Controller
     {
         $person = Person::find($id);
 
-        $input = $request->only(['rut','firstName','lastName','address','city','type']);
+        $input = $request->only(['rut','firstName','lastName','address','city','phone','type']);
 
         $rules = [
                 'rut'=>'required',
@@ -115,6 +118,7 @@ class PersonController extends Controller
                 'lastName'=>'required',
                 'address'=>'required',
                 'city'=>'required',
+                'phone'=>'required',
                 'type'=>'required'
             ];
 
@@ -127,6 +131,7 @@ class PersonController extends Controller
             $person->lastName = $input['lastName'];
             $person->address = $input['address'];
             $person->city = $input['city'];
+            $person->phone = $input['phone'];
 
             $person->save();
 
@@ -233,6 +238,28 @@ class PersonController extends Controller
         $arreglo = compact('moviles','person');
 
         return response()->json($arreglo);
+    }
+
+    public function importOldData(){
+        $oldPersons = DB::table('persona')->get();
+
+        foreach ($oldPersons as $old) {
+            $data = [
+            'rut'           =>  $old->RUT_PERSONA,
+            'firstName'     =>  $old->NOMBRES_PERSONA,
+            'lastName'      =>  $old->APELLIDO_PATERNO_PERSONA." ".$old->APELLIDO_MATERNO_PERSONA,
+            'address'       =>  $old->DIRECCION_PERSONA,
+            'city'          =>  'Coquimbo',
+            'phone'         =>  $old->TELEFONO_FIJO_PERSONA,
+            'type'          =>  'Chofer',
+            ];
+
+            $person = new Person($data);
+
+            $person->save();
+        }
+
+        return "Finish";
     }
 
 }
