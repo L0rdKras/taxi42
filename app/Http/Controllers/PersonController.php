@@ -20,7 +20,7 @@ class PersonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
 
     public function index()
     {
@@ -165,7 +165,7 @@ class PersonController extends Controller
     public function addAccounts($id){
         $person = Person::find($id);
 
-        $accounts = Account::where('exigible','=','0')->orderBy('name')->get();
+        $accounts = Account::where('type','=','Ingreso')->orderBy('name')->get();
 
         return view('persons.addAccount',compact('person','accounts'));
     }
@@ -176,7 +176,7 @@ class PersonController extends Controller
 
         $data = Person::find($id)->accounts()->where('account_id','=',$input['account_id'])->count();
 
-        if($data == 0){            
+        if($data == 0){
             $account = Person::find($id)->accounts()->attach($request['account_id']);
 
             return response()->json(["respuesta"=>"Guardado"]);
