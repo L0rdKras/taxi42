@@ -92,6 +92,7 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::post('ingresos/realizar/pago/prestamo/{id}',['as'=>'pay-loan','uses'=>'LoanController@payLoan']);
 	//Pago cuentas
 	Route::get('ingresos/pago/cuentas',['as'=>'pago-cuentas','uses'=>'PayController@create']);
+	Route::post('ingreso/pago/cuentas',['as'=>'store-pay-account','uses'=>'PayController@store']);
 
 	//Egresos
 	//ahorro

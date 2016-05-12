@@ -151,11 +151,16 @@
 					<input type="text" id="totalPagar" readonly class="col-md-3" value="">
 				</p>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Pagar</button>
+        <button type="button" class="btn btn-primary" id="btn-confirm-pay">Pagar</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+{!! Form::open(array('id'=>'formPay','route' => ['store-pay-account'],'method'=>'POST')) !!}
+{!! Form::hidden('pay_date', null, array('id'=>'pay_date') ); !!}
+{!! Form::hidden('movil_id', null, array('id'=>'movil_id') ); !!}
+{!! Form::close() !!}
 @endsection
 
 @section('scripts')

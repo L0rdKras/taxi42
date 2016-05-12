@@ -44,7 +44,9 @@ class PayController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->only(['pay_date','movil_id']);
+
+        return $data;
     }
 
     /**

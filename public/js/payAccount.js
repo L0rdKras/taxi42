@@ -10,6 +10,8 @@ $(document).ready(function() {
 
 	cantidadHojas();
 
+	confirmaPago();
+
 });
 
 var cleanAlerts = function(object){
@@ -122,6 +124,10 @@ var seleccionarPendiente = function(){
 
 		ruta = ruta.replace(':DATE',abuelo.data('date'));
 
+		$("#pay_date").val(abuelo.data('date'));
+
+		$("#movil_id").val($("#movil").val());
+
 		var templateRow = $("#rowDetail").html();
 
 		$("#detailDebtsMovil").html("");
@@ -195,4 +201,20 @@ var calcularTotal = function(sheets){
 	$("#totalHojas").val(totalHojas);
 
 	$("#totalPagar").val(totalPagar);
+};
+
+var confirmaPago = function(){
+	$("#btn-confirm-pay").on('click',function(event){
+		event.preventDefault();
+
+		var form = $("#formPay");
+
+		var url = form.attr('action');
+
+		var data = form.serialize();
+
+		$.post(url,data,function(response){
+			console.log(response);
+		});
+	});
 };
