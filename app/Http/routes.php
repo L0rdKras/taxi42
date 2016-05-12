@@ -106,4 +106,9 @@ Route::group(['middleware'=>'auth'],function(){
 
 	Route::get('import/old/data',['as'=>'import-old-data-persons','uses'=>'PersonController@importOldData']);
 	Route::get('test/task',['as'=>'prueba-task','uses'=>'ProgramTasks@addDailyAccounts']);
+
+	//Citaciones
+	Route::get('disciplina',['as'=>'disciplina','uses'=>'CitationController@index']);
+	Route::get('disciplina/citacion',['as'=>'citacion','uses'=>'CitationController@create']);
+	Route::post('disciplina/citacion',['as'=>'save-citation','uses'=>'CitationController@store']);
 });

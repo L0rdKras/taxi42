@@ -36,14 +36,14 @@
             <li><a href="{{route('registro')}}">Registro</a></li>
             <li><a href="{{route('ingresos')}}">Ingresos</a></li>
             <li><a href="{{route('egresos')}}">Egresos</a></li>
-            <li><a href="">Disciplina</a></li>
+            <li><a href="{{route('disciplina')}}">Disciplina</a></li>
             <?php
             if (Auth::check()){
               ?><li><a href="{{route('logOut')}}">Logout</a></li><?php
             }
 
             ?>
-            
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -63,7 +63,7 @@
           <div class="modal-body">
             <p>:MENSAJE</p>
           </div>
-          
+
         </div>
       </div>
     </div>
@@ -76,7 +76,7 @@
   <!--calendario-->
   <link type="text/css" rel="stylesheet" href="{{ asset('dhtmlgoodies_calendar/dhtmlgoodies_calendar.css?random=20051112') }}" media="screen"></LINK>
   <script type="text/javascript" src="{{ asset('dhtmlgoodies_calendar/dhtmlgoodies_calendar.js?random=20060118')}}"></script>
-<!--calendario-->   
+<!--calendario-->
 
 	@yield('scripts')
 </body>
