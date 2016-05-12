@@ -53,6 +53,7 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::post('registro/crear/movil', ['as'=>'save-movil','uses'=>'MovilController@store']);
 	Route::get('registro/lista/moviles', ['as'=>'lista-moviles','uses'=>'MovilController@listOfMovils']);
 	Route::get('data/pendings/movil/{id}', ['as'=>'pendings-movil','uses'=>'MovilController@debtsMovil']);
+	Route::get('data/pendings/movil/day/{id}/{date}', ['as'=>'detail-data-day','uses'=>'MovilController@debtsDayMovil']);
 
 	//Fondos
 

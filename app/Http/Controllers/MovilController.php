@@ -134,4 +134,17 @@ class MovilController extends Controller
 
         return response()->json($fechas);
     }
+
+    public function debtsDayMovil($id,$date){
+      $pendings = Movil::find($id)->Pendings()->where('date',$date)->where('status','Pendiente')->get();
+
+      $array = [];
+
+      foreach ($pendings as $pending) {
+        $array[] = $pending->Account;
+      }
+
+      //dd($pendings);
+      return response()->json($array);
+    }
 }

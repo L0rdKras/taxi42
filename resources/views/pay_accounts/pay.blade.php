@@ -4,6 +4,7 @@
 <div class="container theme-showcase" style="padding-top:80px" role="main">
 	<input type="hidden" id="rutaData" value="{{ route('data-person',':ID')}}">
 	<input type="hidden" id="rutaDataMovil" value="{{ route('pendings-movil',':ID')}}">
+	<input type="hidden" id="rutaDeudaDia" value="{{ route('detail-data-day',[':ID',':DATE'])}}">
 	<h2>Pago Cuentas</h2>
     <div class="page-hader">
         <div class="panel panel-default">
@@ -86,6 +87,75 @@
 		<th><a href="" class="btn btn-warning pagar-pendiente">Pagar</a></th>
 	</tr>
 </template>
+
+<template id="rowDetail">
+	<tr>
+		<td>
+			:CUENTA
+		</td>
+		<td>
+			:MONTO
+		</td>
+	</tr>
+</template>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modalPagar">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Detalle Cuentas</h4>
+      </div>
+      <div class="modal-body" style="height:350px; overflow:auto;">
+        <table class="table table-hover">
+        	<thead>
+        		<td>
+        			Cuenta
+        		</td>
+						<td>
+							Monto
+						</td>
+        	</thead>
+					<tbody id="detailDebtsMovil"></tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+				<p class="row">
+					<span class="col-md-6"></span>
+					<span class="col-md-3">Total Cuentas :</span>
+					<input type="text" id="totalAccounts" readonly class="col-md-3" value="">
+				</p>
+				<p class="row">
+					<span class="col-md-4">
+						Hojas de Ruta :
+						<input type="text" id="numeroHojas" value="1" size="1">
+						<a href="#">
+							<span class="glyphicon glyphicon-triangle-top modSheet" data-mod="+" aria-hidden="true"></span>
+						</a>
+						<a href="#">
+							<span class="glyphicon glyphicon-triangle-bottom modSheet" data-mod="-" aria-hidden="true"></span>
+						</a>
+					</span>
+					<span class="col-md-4">
+						Valor Hoja :
+						<input type="text" id="valorHoja" readonly size="5" value="1000">
+					</span>
+					<span class="">
+						Total Hoja :
+						<input type="text" id="totalHojas"readonly size="5" value="">
+					</span>
+				</p>
+				<p class="row">
+					<span class="col-md-6"></span>
+					<span class="col-md-3">Total a Pagar: </span>
+					<input type="text" id="totalPagar" readonly class="col-md-3" value="">
+				</p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Pagar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 @endsection
 
 @section('scripts')

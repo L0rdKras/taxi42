@@ -9,4 +9,9 @@ class Pending extends Model
   protected $table = 'pendings';
 
   protected $fillable = ['date','amount','status','movil_id','account_id'];
+
+  public function Account()
+	{
+		return $this->belongsTo('App\Account');
+	}
 }
