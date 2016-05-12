@@ -86,7 +86,9 @@ class PayController extends Controller
 
         $pay->Movements()->attach($movement->id);
 
-        return "Guardado";
+        $ruta = route('pago-cuentas');
+
+        return response()->json(['respuesta'=>'Guardado','ruta'=>$ruta]);
     }
 
     /**
