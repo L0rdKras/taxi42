@@ -9,6 +9,9 @@ use App\Http\Controllers\Controller;
 
 use App\Person;
 use App\RouteSheet;
+use App\Pay;
+use App\Movement;
+use App\Movil;
 
 class PayController extends Controller
 {
@@ -44,9 +47,46 @@ class PayController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->only(['pay_date','movil_id']);
+        $data = $request->only(['pay_date','movil_id','sheetsquantity','totalDebtAccount']);
+        $routeSheet = RouteSheet::orderBy('created_at','desc')->first();
 
-        return $data;
+        $valueRouteSheet = $routeSheet->amount;
+
+        $totalSheet = $valueRouteSheet*$data['sheetsquantity'];
+
+        $totalPendings = Movil::find($data['movil_id'])->Pendings()->where('date',$data['pay_date'])->where('status','Pendiente')->sum('amount');
+        //return $totalPendings;
+
+        $totalPay = $totalPendings+$totalSheet;
+
+        $pendings = Movil::find($data['movil_id'])->Pendings()->where('date',$data['pay_date'])->where('status','Pendiente')->get();
+
+        foreach ($pendings as $pending) {
+          $pending->status = 'Cancelada';
+          $pending->save();
+        }
+
+        $dataSave = [
+          'date'=>$data['pay_date'],
+          'total'=>$totalPay,
+          'sheets'=>$data['sheetsquantity'],
+          'sheets_value'=>$valueRouteSheet,
+          'movil_id'=>$data['movil_id']
+        ];
+
+        $pay = new Pay($dataSave);
+
+        $pay->save();
+
+        $dataMovement = ["ingress"=>$totalPay,"egress"=>0];
+
+        $movement = new Movement($dataMovement);
+
+        $movement->save();
+
+        $pay->Movements()->attach($movement->id);
+
+        return "Guardado";
     }
 
     /**

@@ -141,7 +141,10 @@ class MovilController extends Controller
       $array = [];
 
       foreach ($pendings as $pending) {
-        $array[] = $pending->Account;
+        $array[] = [
+          'name'    =>$pending->Account->name,
+          'amount'  =>$pending->amount
+        ];
       }
 
       //dd($pendings);

@@ -26,7 +26,7 @@ var guardaTitular = function(){
 		$.post(url,data,function(response){
 			//borrar los alert
 			cleanAlerts("formPersons");
-			if(response.respuesta!=undefined){
+			if(response.respuesta!==undefined){
 				var modalWindow = $('#modalTemplate').html();
 				if(response.respuesta==="Guardado"){
 					//informar y recargar
@@ -42,12 +42,12 @@ var guardaTitular = function(){
 					$(modalWindow).modal();
 				}
 			}else{
-				$("#formPersons .campoIngreso").each(function (index) 
+				$("#formPersons .campoIngreso").each(function (index)
         		{
         			var id_name = this.id;
 
         			showError(id_name,response);
-        			
+
         		});
 			}
 		},'json').fail(function(){

@@ -136,6 +136,8 @@ var seleccionarPendiente = function(){
 
 		var numeroHojas = $("#numeroHojas").val("1");
 
+		$("#sheetsquantity").val("1");
+
 		$.getJSON(ruta,function(response){
 			var totalAccounts = 0;
 			for (var i = 0, largo=response.length; i < largo; i++) {
@@ -149,6 +151,7 @@ var seleccionarPendiente = function(){
 
 			}
 			$("#totalAccounts").val(totalAccounts);
+			$("#totalDebtAccount").val(totalAccounts);
 
 			var total = parseInt(totalAccounts)+parseInt(valorHoja);
 
@@ -185,6 +188,7 @@ var alterSheet = function(operator){
 	}
 
 	$("#numeroHojas").val(sheets);
+	$("#sheetsquantity").val(sheets);
 
 	calcularTotal(sheets);
 };
@@ -214,7 +218,25 @@ var confirmaPago = function(){
 		var data = form.serialize();
 
 		$.post(url,data,function(response){
-			console.log(response);
+
+			if(response.respuesta!==undefined){
+				var modalWindow = $('#modalTemplate').html();
+				if(response.respuesta==="Guardado"){
+					//informar y recargar
+					modalWindow = modalWindow.replace(':MENSAJE','Pago Realizado');
+					$(modalWindow).modal({
+					  keyboard: false,
+					  backdrop: 'static'
+					});
+					setTimeout(function(){location.href=response.ruta;}, 3000);
+				}else{
+					//informar error
+					modalWindow = modalWindow.replace(':MENSAJE','Problemas al efectuar Pago');
+					$(modalWindow).modal();
+				}
+			}
+		},'json').fail(function(){
+			alert("Ocurrio un error al intentar guardar la informacion");
 		});
 	});
 };

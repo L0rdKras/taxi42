@@ -160,6 +160,8 @@
 {!! Form::open(array('id'=>'formPay','route' => ['store-pay-account'],'method'=>'POST')) !!}
 {!! Form::hidden('pay_date', null, array('id'=>'pay_date') ); !!}
 {!! Form::hidden('movil_id', null, array('id'=>'movil_id') ); !!}
+{!! Form::hidden('sheetsquantity', '1', array('id'=>'sheetsquantity') ); !!}
+{!! Form::hidden('totalDebtAccount', null, array('id'=>'totalDebtAccount') ); !!}
 {!! Form::close() !!}
 @endsection
 

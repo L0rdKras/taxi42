@@ -16,8 +16,12 @@ class Pays extends Migration
             $table->increments('id');
             $table->date('date');
             $table->integer('total');
-            $table->integer('quantity');
+            $table->integer('sheets');
+            $table->integer('sheets_value');
+            $table->integer('movil_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('movil_id')->references('id')->on('movils');
         });
     }
 
