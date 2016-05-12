@@ -138,7 +138,7 @@
 					</span>
 					<span class="col-md-4">
 						Valor Hoja :
-						<input type="text" id="valorHoja" readonly size="5" value="1000">
+						<input type="text" id="valorHoja" readonly size="5" value="{{$routeSheet->amount}}">
 					</span>
 					<span class="">
 						Total Hoja :

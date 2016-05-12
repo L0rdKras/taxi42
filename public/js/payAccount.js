@@ -69,7 +69,7 @@ var cargarDataSocio = function (id){
 			//console.log(moviles[i].id);
 			mySelect.append($('<option>', {
 				value: moviles[i].id,
-				text: moviles[i].id
+				text: "("+moviles[i].id+") "+moviles[i].mark+" "+moviles[i].model+" Patente: "+moviles[i].plate
 			}));
 		}
 

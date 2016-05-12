@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Person;
+use App\RouteSheet;
 
 class PayController extends Controller
 {
@@ -30,7 +31,9 @@ class PayController extends Controller
     {
         $partners = Person::where('type','Socio')->orderBy('lastName')->get();
 
-        return view('pay_accounts.pay',compact('partners'));
+        $routeSheet = RouteSheet::orderBy('created_at','desc')->first();
+
+        return view('pay_accounts.pay',compact('partners','routeSheet'));
     }
 
     /**
