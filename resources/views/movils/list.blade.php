@@ -12,19 +12,32 @@
             	<table class="table table-striped">
 		            <thead>
 		              <tr>
+										<th>
+											Numero
+										</th>
 		                <th>Placa</th>
 		                <th>Marca</th>
 		                <th>Modelo</th>
 		                <th>Propietario</th>
+										<th>
+
+										</th>
 		              </tr>
 		            </thead>
 		            <tbody>
 		              @foreach($movils as $movil)
 		              <tr data-id="{{$movil->id}}">
+										<td>
+											{{$movil->number}}
+										</td>
 		                <td>{{$movil->plate}}</td>
 		                <td>{{$movil->mark}}</td>
 		                <td>{{$movil->model}}</td>
 		                <td>{{$movil->Person->firstName.' '.$movil->Person->lastName}}</td>
+										<td>
+											<a class="btn btn-primary btnEdicionMovil" role="button" href="{{route('editar-movil', ['id' => $movil->id])}}">Editar</a>
+		                	<a class="btn btn-warning" role="button" href="{{route('asignar-cuentas-movil', ['id' => $movil->id])}}">Asignar Cuentas</a>
+										</td>
 		              </tr>
 		              @endforeach
 		            </tbody>

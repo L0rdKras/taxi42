@@ -2,43 +2,43 @@
 
 @section('content')
 <div class="container theme-showcase" style="padding-top:80px" role="main">
-	<h2>Registro de Moviles</h2>
+	<h2>Edicion de Moviles</h2>
     <div class="page-hader">
         <div class="panel panel-default">
 
   			<div class="panel-heading">Datos</div>
   			<div class="panel-body">
-	        	{!! Form::open(array('id'=>'formMovils','route' => ['save-movil'],'method'=>'POST')) !!}
+	        	{!! Form::open(array('id'=>'formMovils','route' => ['update-movil',$movil->id],'method'=>'PATCH')) !!}
 							<div class="row">
 								<h4>
 								{!! Form::label('number', 'Numero',array('class' => 'label label-default col-md-2')); !!}
-								{!! Form::text('number',null,array('id'=>'number','class'=>'col-md-2 campoIngreso')); !!}
+								{!! Form::text('number',$movil->number,array('id'=>'number','class'=>'col-md-2 campoIngreso')); !!}
 								</h4>
 							</div>
 	        		<div class="row">
 	        			<h4>
 		        		{!! Form::label('plate', 'Placa Patente',array('class' => 'label label-default col-md-2')); !!}
-					    	{!! Form::text('plate',null,array('id'=>'plate','class'=>'col-md-2 campoIngreso')); !!}
+					    	{!! Form::text('plate',$movil->plate,array('id'=>'plate','class'=>'col-md-2 campoIngreso')); !!}
 					    	</h4>
 				    	</div>
 	        		<div class="row">
 	        			<h4>
 		        		{!! Form::label('mark', 'Marca',array('class' => 'label label-default col-md-2')); !!}
-					    {!! Form::text('mark',null,array('id'=>'mark','class'=>'col-md-2 campoIngreso')); !!}
+					    {!! Form::text('mark',$movil->mark,array('id'=>'mark','class'=>'col-md-2 campoIngreso')); !!}
 					    </h4>
 				    </div>
 				    <div class="row">
 	        			<h4>
 		        		{!! Form::label('model', 'Modelo',array('class' => 'label label-default col-md-2')); !!}
-					    {!! Form::text('model',null,array('id'=>'model','class'=>'col-md-2 campoIngreso')); !!}
+					    {!! Form::text('model',$movil->model,array('id'=>'model','class'=>'col-md-2 campoIngreso')); !!}
 					    </h4>
 				    </div>
 				    <div class="row">
 	        			<h4>
 		        		{!! Form::label('person', 'Dueño',array('class' => 'label label-default col-md-2')); !!}
-					    {!! Form::text('person',null,array('id'=>'person','class'=>'col-md-2 campoIngreso','readonly'=>'true')); !!}
+					    {!! Form::text('person',$movil->Person->firstName.' '.$movil->Person->lastName,array('id'=>'person','class'=>'col-md-2 campoIngreso','readonly'=>'true')); !!}
 					    <button class="btn btn-success" id="btnBuscarPartner">Buscar</button>
-					    {!! Form::hidden('person_id',null,array('id'=>'person_id')); !!}
+					    {!! Form::hidden('person_id',$movil->Person->id,array('id'=>'person_id')); !!}
 					    </h4>
 				    </div>
 

@@ -27,7 +27,7 @@ class ProgramTasks extends Controller
         $today = date('Y-m-d');
 
         foreach ($movils as $movil) {
-          $assignedAcounts = $movil->Person->accounts;
+          $assignedAcounts = $movil->accounts;
 
           foreach ($assignedAcounts as $account) {
             $data = [

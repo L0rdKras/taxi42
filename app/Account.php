@@ -15,8 +15,8 @@ class Account extends Model
 		return $this->belongsTo('App\Fondo');
 	}
 
-	public function persons()
+	public function movils()
     {
-        return $this->belongsToMany('App\Person');
+        return $this->belongsToMany('App\Movil');
     }
 }

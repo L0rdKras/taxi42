@@ -8,7 +8,7 @@ class Movil extends Model
 {
 	protected $table = 'movils';
 
-	protected $fillable = ['plate','mark','model','person_id'];
+	protected $fillable = ['number','plate','mark','model','person_id'];
 
 	public function Person()
 	{
@@ -19,4 +19,8 @@ class Movil extends Model
 	{
 		return $this->hasMany('App\Pending');
 	}
+	public function accounts()
+  {
+      return $this->belongsToMany('App\Account');
+  }
 }

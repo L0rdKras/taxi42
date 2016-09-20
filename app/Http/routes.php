@@ -38,9 +38,9 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::get('registro/listado/personas', ['as'=>'lista-personas','uses'=>'PersonController@listOfPersons']);
 	Route::get('registro/editar/persona/{id}', ['as'=>'editar-persona','uses'=>'PersonController@edit']);
 	Route::patch('registro/editar/persona/{id}', ['as'=>'update-person','uses'=>'PersonController@update']);
-	Route::get('registro/asignar/cuentas/persona/{id}', ['as'=>'asignar-cuentas-persona','uses'=>'PersonController@addAccounts']);
-	Route::post('add/account/person/{id}', ['as'=>'add-account-person','uses'=>'PersonController@saveAccount']);
-	Route::post('delete/account/person/{id}', ['as'=>'delete-account-person','uses'=>'PersonController@deleteAccount']);
+	//Route::get('registro/asignar/cuentas/persona/{id}', ['as'=>'asignar-cuentas-persona','uses'=>'PersonController@addAccounts']);
+	//Route::post('add/account/person/{id}', ['as'=>'add-account-person','uses'=>'PersonController@saveAccount']);
+	//Route::post('delete/account/person/{id}', ['as'=>'delete-account-person','uses'=>'PersonController@deleteAccount']);
 	Route::get('lista/cuentas/asociadas/socio/{id}', ['as'=>'cuentas-asociadas-socio','uses'=>'PersonController@listOfAccounts']);
 	Route::get('cartola/ahorro/socio/{id}', ['as'=>'get-cartola','uses'=>'PersonController@getCartola']);
 	Route::get('cartola/prestamos/socio/{id}', ['as'=>'get-cartola-loans','uses'=>'PersonController@getLoans']);
@@ -55,6 +55,11 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::get('data/pendings/movil/{id}', ['as'=>'pendings-movil','uses'=>'MovilController@debtsMovil']);
 	Route::get('data/pendings/movil/day/{id}/{date}', ['as'=>'detail-data-day','uses'=>'MovilController@debtsDayMovil']);
 
+	Route::get('registro/asignar/cuentas/movil/{id}', ['as'=>'asignar-cuentas-movil','uses'=>'MovilController@addAccounts']);
+	Route::get('registro/editar/movil/{id}', ['as'=>'editar-movil','uses'=>'MovilController@edit']);
+	Route::patch('registro/editar/movil/{id}', ['as'=>'update-movil','uses'=>'MovilController@update']);
+	Route::post('add/account/movil/{id}', ['as'=>'add-account-movil','uses'=>'MovilController@saveAccount']);
+	Route::post('delete/account/movil/{id}', ['as'=>'delete-account-movil','uses'=>'MovilController@deleteAccount']);
 	//Fondos
 
 	Route::get('registro/fondos', ['as'=>'fondos','uses'=>'FondoController@index']);

@@ -14,6 +14,7 @@ class Movils extends Migration
     {
         Schema::create('movils', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('number')->unsigned();
             $table->string('plate')->unique();
             $table->string('mark');
             $table->string('model');
