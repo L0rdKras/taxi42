@@ -26,41 +26,48 @@ class ProgramTasks extends Controller
 
         $today = date('Y-m-d');
 
-        foreach ($movils as $movil) {
-          $assignedAcounts = $movil->accounts;
+        $fechaInicio=strtotime("04-01-2016");
+        $fechaFin=strtotime("12-12-2016");
+        for($i=$fechaInicio; $i<=$fechaFin; $i+=86400){
+            //echo date("d-m-Y", $i)."<br>";
+            $today = date("Y-m-d",$i);
+            foreach ($movils as $movil) {
+              $assignedAcounts = $movil->accounts;
 
-          foreach ($assignedAcounts as $account) {
-            $data = [
-              'date'        => $today,
-              'amount'      => $account->amount,
-              'status'      => 'Pendiente',
-              'movil_id'    => $movil->id,
-              'account_id'  => $account->id
-            ];
-            //var_dump($data);
-            $pending = new Pending($data);
+              foreach ($assignedAcounts as $account) {
+                $data = [
+                  'date'        => $today,
+                  'amount'      => $account->amount,
+                  'status'      => 'Pendiente',
+                  'movil_id'    => $movil->id,
+                  'account_id'  => $account->id
+                ];
+                //var_dump($data);
+                $pending = new Pending($data);
 
-            $pending->save();
+                $pending->save();
 
-          }
-          //cuentas obligatorias
-          $exigibleAccounts = Account::where('exigible',1)->where('type','Ingreso(auto)')->where('renovate',1)->get();
+              }
+              //cuentas obligatorias
+              $exigibleAccounts = Account::where('exigible',1)->where('type','Ingreso(auto)')->where('renovate',1)->get();
 
-          foreach ($exigibleAccounts as $account) {
-            $data = [
-              'date'        => $today,
-              'amount'      => $account->amount,
-              'status'      => 'Pendiente',
-              'movil_id'    => $movil->id,
-              'account_id'  => $account->id
-            ];
-            //var_dump($data);
-            $pending = new Pending($data);
+              foreach ($exigibleAccounts as $account) {
+                $data = [
+                  'date'        => $today,
+                  'amount'      => $account->amount,
+                  'status'      => 'Pendiente',
+                  'movil_id'    => $movil->id,
+                  'account_id'  => $account->id
+                ];
+                //var_dump($data);
+                $pending = new Pending($data);
 
-            $pending->save();
+                $pending->save();
 
-          }
+              }
+            }
         }
+
     }
 
 }
