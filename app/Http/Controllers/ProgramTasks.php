@@ -26,8 +26,8 @@ class ProgramTasks extends Controller
 
         $today = date('Y-m-d');
 
-        $fechaInicio=strtotime("04-01-2016");
-        $fechaFin=strtotime("12-12-2016");
+        $fechaInicio=strtotime("15-04-2016");
+        $fechaFin=strtotime("15-07-2016");
         for($i=$fechaInicio; $i<=$fechaFin; $i+=86400){
             //echo date("d-m-Y", $i)."<br>";
             $today = date("Y-m-d",$i);
